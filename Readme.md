@@ -1,6 +1,8 @@
 # download pinterest origin image
 
 ## How to use
+download from [releases](https://github.com/pzx521521/pinterest-download/releases/):
+
 ```bash
 pinterest  <username> <boradname> 
 ```

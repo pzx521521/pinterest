@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/pzx521521/pinterest"
 	"log"
 	"net/http"
 	"os"
@@ -31,12 +32,12 @@ func main() {
 	cli := http.DefaultClient
 	if *p != "" {
 		var err error
-		cli, err = GetProxyHttpClient(*p)
+		cli, err = pinterest.GetProxyHttpClient(*p)
 		if err != nil {
 			log.Fatal("%v\n", err)
 		}
 	}
-	boardsResp, err := GetBoards(cli, userName)
+	boardsResp, err := pinterest.GetBoards(cli, userName)
 	if err != nil {
 		log.Fatal("%v\n", err)
 	}
@@ -50,7 +51,7 @@ func main() {
 		return
 	}
 	for _, board := range boardsFilter {
-		pins, err := GetPins(cli, board, "")
+		pins, err := pinterest.GetPins(cli, board, "")
 		if err != nil {
 			log.Printf("can't find pins in board:%v\n", board.Url)
 			continue
@@ -66,6 +67,6 @@ func main() {
 		savePath, _ := filepath.Abs(*o)
 		savePath = filepath.Join(savePath, filepath.Base(board.Url))
 		os.MkdirAll(savePath, os.ModePerm)
-		DownloadImageMuti(cli, imgs, savePath, *ps)
+		pinterest.DownloadImageMuti(cli, imgs, savePath, *ps)
 	}
 }

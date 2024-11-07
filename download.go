@@ -1,4 +1,4 @@
-package main
+package pinterest
 
 import (
 	"golang.org/x/sync/errgroup"

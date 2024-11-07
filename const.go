@@ -1,4 +1,4 @@
-package main
+package pinterest
 
 import (
 	"encoding/json"

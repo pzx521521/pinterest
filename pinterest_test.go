@@ -1,4 +1,4 @@
-package main
+package pinterest
 
 import (
 	"log"
@@ -21,7 +21,7 @@ func TestGetPins(t *testing.T) {
 
 	for key, val := range boards.InitialReduxState.Boards {
 		if key == "946107902908880006" {
-			boards, err := GetPins(client, val, "")
+			boards, err := GetPins(client, &val, "")
 			if err != nil {
 				log.Printf("%v\n", boards)
 			}

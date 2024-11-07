@@ -1,4 +1,4 @@
-module pinterest
+module github.com/pzx521521/pinterest
 
 go 1.23.1
 

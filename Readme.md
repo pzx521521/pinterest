@@ -27,3 +27,18 @@ pinterest -o=./download parapeng wallpaper
 ```bash
 pinterest -ps=5 parapeng wallpaper 
 ```
+
+### curl
+
+#### GetBoards
+```bash
+https://www.pinterest.com/parapeng
+```
+in
+```
+<script id="__PWS_INITIAL_PROPS__" type="application/json">
+```
+#### GetPins
+```bash
+https://www.pinterest.com/resource/BoardFeedResource/get/?source_url=/parapeng/wallpaper/&data={"options":{"board_id":"946107902908880006","board_url":"/parapeng/wallpaper/","page_size":250}}
+```

@@ -37,5 +37,5 @@ func TestGetPinsUrl(t *testing.T) {
 		return
 	}
 	log.Printf("%v\n", imgs)
-	//DownloadImageMuti(client, imgs, "download", 10)
+	DownloadImageMuti(client, imgs, "/Users/parapeng/Downloads/wait", 10)
 }

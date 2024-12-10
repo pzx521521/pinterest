@@ -1,0 +1,6 @@
+export http_proxy=http://127.0.0.1:8888
+
+curl 'https://www.pinterest.com/resource/BoardFeedResource/get/?source_url=%2Fparapeng%2Fwait%2F&data=%7B%22options%22%3A%7B%22board_id%22%3A%22946107902908890602%22%2C%22board_url%22%3A%22%2Fparapeng%2Fwait%2F%22%2C%22currentFilter%22%3A-1%2C%22field_set_key%22%3A%22react_grid_pin%22%2C%22filter_section_pins%22%3Atrue%2C%22sort%22%3A%22default%22%2C%22layout%22%3A%22default%22%2C%22page_size%22%3A25%2C%22redux_normalize_feed%22%3Atrue%2C%22bookmarks%22%3A%5B%22Y2JURlEwTlU1RVdYaE5SR00wVFhwUmVVMVVhM2RPUkZVMVRYcGtPRTFxVmpoTmFsWTRUVlJqZUU5VVdUQk9WRTB4VDBSWmQwNXFUWGhOZVhCSVZWVjNjV1pFVW1oT1ZFVTBXbFJuZVU0eVVteFBSRTVwVFhwS2FrOVhSbXhPTWtsNVRVUkpkMDFxVm14YWFtdDRUV3BuTVU5RVVYaE9WR042VG1wVk1VNUVSWGhhYW1zeldWZFpNazFVUm10Wk1rMHpUbXBqZDFwdFdqaFVhMVpZWmtFOVBRPT18VUhvNVQySXlOV3htUkVVelRWUnJNazVFVlhwT1ZHY3lUVVJaZWsxVVRYRlNNVVpOUzI1M2VVNUVhM2hhYlZreFQxUlpNVTU2YkdoT2JWa3lUbTFHYWxwcVZYaFpWRUY0VFVST2FGbDZXVEZPYlZsNlQxUmpORnBxVG10TlZHc3hUVVJyTUU1NlRUVmFhbEpvVG1wc2FrNUVTbXBPZW14dFRUSkZlbVpGTlVaV00zYzl8MTcxOTY0NTM1ODYwNjMxMypHUUwqfDgwMmMzM2E4MTkzMTQyNjcxMDc2MDM1MTJhZDZiN2VlYjRiZGJiMjgzOWEwZjVjY2U2ODBhNGYyYWM0NWM2Njd8TkVXfA%3D%3D%22%5D%7D%2C%22context%22%3A%7B%7D%7D&_=1733806208030' \
+  -H 'x-pinterest-appstate: background' \
+  -H 'x-pinterest-pws-handler: www/[username]/[slug].js'
+

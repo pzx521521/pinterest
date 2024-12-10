@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"path/filepath"
 	"regexp"
 )
 
@@ -29,7 +30,7 @@ func GetProxyHttpClient(proxyUrl string) (*http.Client, error) {
 
 func GetPins(client *http.Client, board *Board, Bookmark string) (*RespPins, error) {
 	urlApiPrefix := "https://www.pinterest.com/resource/BoardFeedResource/get/"
-	request := PinterestRequest{
+	requestData := PinterestRequest{
 		SourceUrl: board.Url,
 		Data: PinterestData{
 			Options: PinterestOptions{
@@ -40,15 +41,21 @@ func GetPins(client *http.Client, board *Board, Bookmark string) (*RespPins, err
 			},
 		},
 	}
-	fullURL, err := request.ToURL(urlApiPrefix)
+	fullURL, err := requestData.ToURL(urlApiPrefix)
 	if err != nil {
 		return nil, err
 	}
-	get, err := client.Get(fullURL)
+	req, err := http.NewRequest("GET", fullURL, nil)
+	req.Header.Set("x-pinterest-appstate", "background")
+	req.Header.Set("x-pinterest-pws-handler", "www/[username]/[slug].js")
+	get, err := client.Do(req)
 	defer get.Body.Close()
 	data, err := io.ReadAll(get.Body)
 	if err != nil {
 		return nil, err
+	}
+	if get.StatusCode != 200 {
+		return nil, errors.New(string(data))
 	}
 	var respPins RespPins
 	err = json.Unmarshal(data, &respPins)
@@ -86,4 +93,29 @@ func GetRespUser(htmlContent []byte) (*RespUser, error) {
 	var respUser RespUser
 	err := json.Unmarshal(jsonData, &respUser)
 	return &respUser, err
+}
+
+func GetPinsUrl(cli *http.Client, userName string, boardName string) ([]string, error) {
+	boardsResp, err := GetBoards(cli, userName)
+	if err != nil {
+		return nil, err
+	}
+	boards := boardsResp.InitialReduxState.Boards
+	var imgs []string
+	for _, board := range boards {
+		if filepath.Base(board.Url) == boardName || boardName == "" {
+			pins, err := GetPins(cli, &board, "")
+			if err != nil {
+				return nil, err
+			}
+
+			for _, imgUrl := range pins.ResourceResponse.ResourceData {
+				img := imgUrl.GetOrigin()
+				if img != nil {
+					imgs = append(imgs, img.Url)
+				}
+			}
+		}
+	}
+	return imgs, nil
 }

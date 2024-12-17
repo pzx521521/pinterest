@@ -2,6 +2,7 @@ package pinterest
 
 import (
 	"log"
+	"os"
 	"testing"
 )
 
@@ -31,11 +32,13 @@ func TestGetPins(t *testing.T) {
 }
 func TestGetPinsUrl(t *testing.T) {
 	client, _ := GetProxyHttpClient("http://localhost:7897")
-	imgs, err := GetPinsUrl(client, "parapeng", "wait")
+	imgs, err := GetPinsUrl(client, "parapeng", "wallpaper2")
 	if err != nil {
 		log.Printf("%v\n", err)
 		return
 	}
 	log.Printf("%v\n", imgs)
-	DownloadImageMuti(client, imgs, "/Users/parapeng/Downloads/wait", 10)
+	dir := "/Users/parapeng/Downloads/wait"
+	os.MkdirAll(dir, os.ModePerm)
+	DownloadImageMuti(client, imgs, dir, 10)
 }
